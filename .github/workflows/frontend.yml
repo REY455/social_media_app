@@ -22,7 +22,10 @@ jobs:
           cd social_frontend
           npm run build
 
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
       - name: Deploy to Vercel
         run: |
           cd social_frontend
-          npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --project ${{ secrets.VERCEL_PROJECT_NAME }}
+          npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --project-id ${{ secrets.VERCEL_PROJECT_ID }}
