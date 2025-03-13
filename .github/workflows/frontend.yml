@@ -2,10 +2,8 @@ name: Deploy Frontend to Vercel
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - "social_frontend/**"
+    branches: [ "main" ]
+
 
 jobs:
   deploy:

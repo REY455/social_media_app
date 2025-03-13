@@ -2,10 +2,7 @@ name: Deploy Backend to AWS EC2
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - "social_backend/**"
+    branches: [ "main" ]
 
 jobs:
   deploy:
