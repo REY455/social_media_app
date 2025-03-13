@@ -35,4 +35,4 @@ jobs:
             sudo pkill -f "node server.js" || true
             docker stop backend-container || true
             docker rm backend-container || true
-            docker run -d -p  5000:5000 --name backend-container   -e MONGO_URI="mongodb+srv://ahmedbasharsyed455:mlFrbxsTlnldYVtZ@cluster0.zlqtt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"   basharahmed/social_backend
+            docker run -d -p 5000:5000 --name backend-container  -e MONGO_URI="mongodb+srv://ahmedbasharsyed455:mlFrbxsTlnldYVtZ@cluster0.zlqtt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" ${{ secrets.DOCKER_USERNAME }}/social_backend:latest
