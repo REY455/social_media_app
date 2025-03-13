@@ -15,7 +15,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd frontend
+          cd social_frontend
           npm install
 
       - name: Build Frontend
