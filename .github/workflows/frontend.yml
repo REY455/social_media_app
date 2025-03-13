@@ -3,8 +3,6 @@ name: Deploy Frontend to Vercel
 on:
   push:
     branches: [ "main" ]
-    
-
 
 jobs:
   deploy:
@@ -26,4 +24,5 @@ jobs:
 
       - name: Deploy to Vercel
         run: |
-          npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --project-id ${{ secrets.VERCEL_PROJECT_NAME }}
+          cd social_frontend
+          npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --project ${{ secrets.VERCEL_PROJECT_NAME }}
