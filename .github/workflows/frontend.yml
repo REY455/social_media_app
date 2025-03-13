@@ -21,7 +21,7 @@ jobs:
 
       - name: Build Frontend
         run: |
-          cd frontend
+          cd social_frontend
           npm run build
 
       - name: Deploy to Vercel
