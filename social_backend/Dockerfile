@@ -21,4 +21,4 @@ EXPOSE 5000
 ENTRYPOINT ["/sbin/tini", "--"]
 
 # Start the backend server
-CMD ["npm","start"]
+CMD ["npm", "start"]
