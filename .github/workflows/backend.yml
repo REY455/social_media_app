@@ -30,17 +30,22 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # Check if the Node.js server is running and stop it if necessary
+            # Stop any existing Node.js server (if applicable)
             if pgrep -f "node server.js" > /dev/null; then
-              echo "Node.js server is running. Stopping it now..."
-              sudo pkill -f "node server.js"
-            else
-              echo "No Node.js server is running."
+              echo "Stopping Node.js server..."
+              pkill -f "node server.js" || echo "No running server found"
             fi
 
-            # Stop and remove the existing Docker container
+            # Stop and remove old Docker container
             docker stop backend-container || true
             docker rm backend-container || true
 
-            echo " Starting new container..."
-            docker run --init -d -p 5000:5000 --name backend-container -e MONGO_URI="mongodb+srv://ahmedbasharsyed455:mlFrbxsTlnldYVtZ@cluster0.zlqtt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" ${{ secrets.DOCKER_USERNAME }}/social_backend:latest
+            # Pull the latest Docker image
+            docker pull ${{ secrets.DOCKER_USERNAME }}/social_backend:latest
+
+            # Run new container with secrets
+            docker run --init -d \
+              -p 5000:5000 \
+              --name backend-container \
+              -e MONGO_URI="mongodb+srv://ahmedbasharsyed455:mlFrbxsTlnldYVtZ@cluster0.zlqtt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" ${{ secrets.DOCKER_USERNAME }}/social_backend:latest
+              
