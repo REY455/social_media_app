@@ -10,11 +10,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
+      
       - name: Install Dependencies
-        run: npm ci
-        working-directory: social_frontend  # 👈 Add this step
-
+        run: npm install
+        working-directory: social_frontend
+ 
       - name: Build Frontend
         run: npm run build
         working-directory: social_frontend
