@@ -7,31 +7,25 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install Dependencies
-        run: |
-          cd social_frontend
-          npm install
-
+      - name: Clean Install Dependencies
+        run: npm ci
+        working-directory: social_frontend
 
       - name: Grant Execute Permissions
-        run: |
-          cd social_frontend
-          chmod +x node_modules/.bin/react-scripts
+        run: chmod +x node_modules/.bin/react-scripts
+        working-directory: social_frontend
 
       - name: Build Frontend
-        run: |
-          cd social_frontend
-          npm run build
+        run: npm run build
+        working-directory: social_frontend
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
       - name: Deploy to Vercel
-        run: |
-          cd social_frontend
-          npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
+        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
+        working-directory: social_frontend
