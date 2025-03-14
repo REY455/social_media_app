@@ -17,6 +17,12 @@ jobs:
           cd social_frontend
           npm install
 
+
+      - name: Grant Execute Permissions
+        run: |
+          cd social_frontend
+          chmod +x node_modules/.bin/react-scripts
+
       - name: Build Frontend
         run: |
           cd social_frontend
