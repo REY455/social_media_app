@@ -28,4 +28,4 @@ jobs:
       - name: Deploy to Vercel
         run: |
           cd social_frontend
-          npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+          npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
