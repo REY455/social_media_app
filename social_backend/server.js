@@ -19,10 +19,10 @@ if (!fs.existsSync(uploadsDir)) {
 // CORS Configuration
 const corsOptions = {
   origin: ['https://social-frontend-7vgucrnct-rey455s-projects.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE','OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
@@ -37,17 +37,18 @@ const storage = multer.diskStorage({
   destination: uploadsDir,
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
-  }
+  },
 });
 const upload = multer({ storage });
 
 // Connect to MongoDB Atlas
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB Atlas connected successfully'))
-.catch(err => console.error('MongoDB Atlas connection error:', err));
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('MongoDB Atlas connected successfully'))
+  .catch((err) => console.error('MongoDB Atlas connection error:', err));
 
 /** 
  * ✅ CRUD API Routes for Posts
@@ -141,8 +142,13 @@ app.post('/api/posts/like/:id', async (req, res) => {
   }
 });
 
-// Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Export the app for testing
+module.exports = app;
+
+// Start the server only if this file is run directly (not when imported for testing)
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
