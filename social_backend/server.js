@@ -19,7 +19,7 @@ if (!fs.existsSync(uploadsDir)) {
 // CORS Configuration
 const corsOptions = {
   origin: ['https://social-frontend-7vgucrnct-rey455s-projects.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE','OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
   optionsSuccessStatus: 200
