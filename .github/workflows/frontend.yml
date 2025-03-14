@@ -8,7 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      NODE_VERSION: 18.x
+      NODE_VERSION: 21.x
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
