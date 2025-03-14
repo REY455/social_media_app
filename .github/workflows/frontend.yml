@@ -7,14 +7,22 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: 18.x
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
         working-directory: social_frontend
- 
+
       - name: Build Frontend
         run: npm run build
         working-directory: social_frontend
