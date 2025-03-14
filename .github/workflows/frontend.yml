@@ -11,13 +11,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Clean Install Dependencies
-        run: npm ci
-        working-directory: social_frontend
+      # - name: Clean Install Dependencies
+      #   run: npm ci
+      #   working-directory: social_frontend
 
-      - name: Grant Execute Permissions
-        run: chmod +x node_modules/.bin/react-scripts
-        working-directory: social_frontend
+      # - name: Grant Execute Permissions
+      #   run: chmod +x node_modules/.bin/react-scripts
+      #   working-directory: social_frontend
 
       - name: Build Frontend
         run: npm run build
